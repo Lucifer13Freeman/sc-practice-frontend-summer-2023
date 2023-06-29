@@ -1,0 +1,92 @@
+<ng-container *ngIf="model$ | async as model">
+  <div class="container">
+    <div class="header">
+      <p class="title">ВХОД</p>
+      <button class="button button__link" [routerLink]="['../register']">Регистрация</button>
+    </div>
+    <form class="form" [formGroup]="form" (submit)="submit()">
+
+      <div class="text-field__wrapper">
+        <label class="text-field__label" for="email">E-MAIL</label>
+        <div class="text-field">
+          <input
+            formControlName="email"
+            name="email"
+            class="text-field__input"
+            type="email"
+            id="email"
+            placeholder="Введите email"
+          />
+          <span *ngIf="hasError('email')"
+               class="text-field__message text-field__message_invalid"
+          >{{ getErrors('email') }}
+          </span>
+        </div>
+      </div>
+
+      <div class="text-field__wrapper">
+        <label class="text-field__label" for="password">ПАРОЛЬ</label>
+        <div class="text-field">
+          <input
+            class="text-field__input"
+            [type]="isShownPassword ? 'text' : 'password'"
+            name="password"
+            id="password"
+            placeholder="Введите пароль"
+            formControlName="password"
+          />
+          <svg-icon
+            class="text-field__icon text-field__icon-after cursor-pointer"
+            (click)="isShownPassword = !isShownPassword"
+            [src]="'assets/icons/' + (isShownPassword ? 'eye.svg' : 'eye-crossed.svg')"
+          ></svg-icon>
+
+          <span
+            *ngIf="hasError('password')"
+            class="text-field__message text-field__message_invalid"
+          >{{ getErrors('password') }}
+          </span>
+        </div>
+      </div>
+
+      <!--      Пример с floating input'ом-->
+
+<!--      <div class="text-field__wrapper">-->
+<!--        <div class="text-field text-field_floating">-->
+<!--          <input-->
+<!--            class="text-field__input"-->
+<!--            [class.text-field__input_invalid]="isPasswordError || model.error?.error?.password"-->
+<!--            [type]="isShownPassword ? 'text' : 'password'"-->
+<!--            name="password"-->
+<!--            id="password"-->
+<!--            placeholder="Введите пароль"-->
+<!--            formControlName="password"-->
+<!--          />-->
+<!--          <label class="text-field__label" for="password">Пароль</label>-->
+<!--          <svg-icon-->
+<!--            class="text-field__icon text-field__icon-after cursor-pointer"-->
+<!--            (click)="isShownPassword = !isShownPassword"-->
+<!--            [src]="'assets/icons/' + (isShownPassword ? 'eye.svg' : 'eye-crossed.svg')"-->
+<!--          >-->
+<!--          </svg-icon>-->
+<!--        </div>-->
+<!--        <div-->
+<!--          *ngIf="model.error?.error?.password"-->
+<!--          class="text-field__message text-field__message_invalid"-->
+<!--        >-->
+<!--          {{ model.error?.error?.password }}-->
+<!--        </div>-->
+<!--      </div>-->
+
+      <div class="button__container">
+        <button (submit)="submit()"
+                class="button button__submit"
+                [disabled]="form.invalid"
+        >Войти
+        </button>
+
+        <button class="button button__link button__support">Обратиться в тех.поддержку</button>
+      </div>
+    </form>
+  </div>
+</ng-container>

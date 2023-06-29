@@ -1,0 +1,40 @@
+<div *ngIf='model$ | async as model' class="container">
+  <div class="main">
+
+    <div class="left">
+      <div class="button__container">
+        <button class="button button__menu">
+          <svg-icon src="assets/icons/menu.svg" class="button__image" alt="menu"></svg-icon>
+        </button>
+        <p class="title">МЕНЮ</p>
+      </div>
+      <p class="title title__sport">SPORT</p>
+    </div>
+
+    <div class="right">
+
+      <button *ngIf='model.isAuth; else login'
+              class="button button__exit"
+              (click)='logout($event)'>
+        <svg-icon src="assets/icons/exit.svg" alt="exit"></svg-icon>
+      </button>
+
+      <ng-template #login>
+        <button class="button button__enter" [routerLink]="['/auth']">Войти</button>
+      </ng-template>
+
+      <div class="title title__main">
+        <h1 class="title__h1">ПОРТАЛ ДЛЯ ПРОВЕДЕНИЯ ТУРНИРОВ</h1>
+        <p class="title__p">Открытое соревнование среди школьников</p>
+      </div>
+    </div>
+
+  </div>
+
+<!--  <div class="footer">-->
+<!--    <button class="button button__arrow">-->
+<!--      <svg-icon src="assets/icons/arrow.svg" alt="arrow"></svg-icon>-->
+<!--    </button>-->
+<!--  </div>-->
+
+</div>

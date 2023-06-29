@@ -1,0 +1,22 @@
+.checkbox {
+  display: flex;
+  width: 100%;
+  align-items: center;
+
+  input[type='checkbox'] {
+    align-self: center;
+    margin: 0 10px 0 0;
+    accent-color: var(--color-base);
+    min-height: 16px;
+    min-width: 16px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:disabled,
+    &.disabled {
+      cursor: default;
+    }
+  }
+}

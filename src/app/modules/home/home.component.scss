@@ -1,0 +1,110 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main {
+  display: flex;
+  margin: 54px 0 auto 34px;
+}
+
+.left {
+  display: flex;
+  width: 439px;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  width: 841px;
+  height: 100%;
+  border-left: 3px solid var(--color-link);
+}
+
+.button {
+  padding: 0;
+  margin: 0;
+
+  &__menu {
+    background: none;
+    width: 50px;
+    height: 50px;
+    margin-right: 36px;
+
+    svg {
+      #background {
+        fill: var(--color-link)
+      }
+    }
+  }
+
+  &__enter {
+    width: 120px;
+    height: 55px;
+    border-radius: 15px;
+    margin-right: 87px;
+    margin-left: auto;
+  }
+
+  &__exit {
+    background: none;
+    width: 55px;
+    height: 55px;
+    margin-right: 87px;
+    margin-left: auto;
+
+    svg {
+      path {
+        fill: var(--color-link)
+      }
+    }
+  }
+
+  &__arrow {
+    width: 36px;
+    height: 40px;
+    margin-left: 122px;
+    background: none;
+
+    svg {
+      path {
+        fill: var(--color-link)
+      }
+    }
+  }
+}
+
+.title {
+  color: var(--color-link);
+
+  &__sport {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 70px;
+    line-height: 21px;
+    margin-top: 26px;
+  }
+
+  &__main {
+    margin-top: 326px;
+    margin-left: 101px;
+  }
+
+  &__h1 {
+    font-weight: 500;
+    font-size: 55px;
+    line-height: 48px;
+  }
+
+  &__p {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 21px;
+    margin: 0;
+  }
+}
+
+.footer {
+  height: 131px;
+}
