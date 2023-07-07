@@ -1,40 +1,58 @@
 <div *ngIf='model$ | async as model' class="container">
-  <div class="main">
 
-    <div class="left">
-      <div class="button__container">
-        <button class="button button__menu">
-          <svg-icon src="assets/icons/menu.svg" class="button__image" alt="menu"></svg-icon>
+  <mat-drawer-container autosize>
+    <mat-drawer #drawer mode="side">
+      <mat-nav-list class="nav-list">
+        <mat-list-item><button mat-button style="color: var(--color-link-l4)">ТУРНИРЫ</button></mat-list-item>
+        <mat-list-item><button mat-button style="color: var(--color-link-l4)">УЧАСТНИКИ</button></mat-list-item>
+        <mat-list-item><button mat-button style="color: var(--color-link-l4)">РЕЙТИНГ</button></mat-list-item>
+        <mat-list-item><button mat-button style="color: var(--color-link-l4)">ПРАВИЛА</button></mat-list-item>
+      </mat-nav-list>
+    </mat-drawer>
+
+    <mat-drawer-content>
+      <div class="main">
+
+        <div class="left">
+          <div class="button__container">
+            <button (click)="drawer.toggle()" class="button button__menu">
+              <svg-icon src="assets/icons/menu.svg" class="button__image" alt="menu"></svg-icon>
+            </button>
+            <p class="title">МЕНЮ</p>
+          </div>
+          <p class="title title__sport">SPORT</p>
+        </div>
+
+        <div class="right">
+
+          <button *ngIf='model.isAuth; else login'
+                  class="button button__exit"
+                  (click)='logout($event)'>
+            <svg-icon src="assets/icons/exit.svg" alt="exit"></svg-icon>
+          </button>
+
+          <div class="auth_button">
+          <ng-template #login>
+            <button class="button button__enter" [routerLink]="['/auth/login']">Войти</button>
+          </ng-template>
+          <button class="button button__register" [routerLink]="['/auth/register']">Регистрация</button>
+          </div>
+          <div class="title title__main">
+            <h1 class="title__h1">ПОРТАЛ ДЛЯ ПРОВЕДЕНИЯ ТУРНИРОВ</h1>
+            <p class="title__p">Открытое соревнование среди школьников</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <button class="button button__arrow">
+          <svg-icon src="assets/icons/arrow.svg" alt="arrow"></svg-icon>
         </button>
-        <p class="title">МЕНЮ</p>
       </div>
-      <p class="title title__sport">SPORT</p>
-    </div>
-
-    <div class="right">
-
-      <button *ngIf='model.isAuth; else login'
-              class="button button__exit"
-              (click)='logout($event)'>
-        <svg-icon src="assets/icons/exit.svg" alt="exit"></svg-icon>
-      </button>
-
-      <ng-template #login>
-        <button class="button button__enter" [routerLink]="['/auth']">Войти</button>
-      </ng-template>
-
-      <div class="title title__main">
-        <h1 class="title__h1">ПОРТАЛ ДЛЯ ПРОВЕДЕНИЯ ТУРНИРОВ</h1>
-        <p class="title__p">Открытое соревнование среди школьников</p>
-      </div>
-    </div>
-
-  </div>
-
-<!--  <div class="footer">-->
-<!--    <button class="button button__arrow">-->
-<!--      <svg-icon src="assets/icons/arrow.svg" alt="arrow"></svg-icon>-->
-<!--    </button>-->
-<!--  </div>-->
+    </mat-drawer-content>
+  </mat-drawer-container>
 
 </div>
+
+
+
+

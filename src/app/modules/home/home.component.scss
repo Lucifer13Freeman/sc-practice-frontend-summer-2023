@@ -26,11 +26,13 @@
   padding: 0;
   margin: 0;
 
+
   &__menu {
     background: none;
     width: 50px;
     height: 50px;
     margin-right: 36px;
+    margin-left: -2px;
 
     svg {
       #background {
@@ -44,7 +46,18 @@
     height: 55px;
     border-radius: 15px;
     margin-right: 87px;
-    margin-left: auto;
+    margin-left: 500px;
+  }
+
+  &__register {
+    width: 120px;
+    height: 55px;
+    border-radius: 15px;
+    margin-right: 87px;
+    margin-left: 770px;
+    color: var(--color-link);
+    background: var(--color-white);
+    border: var(--color-link);
   }
 
   &__exit {
@@ -64,7 +77,7 @@
   &__arrow {
     width: 36px;
     height: 40px;
-    margin-left: 122px;
+    margin-left: 38px;
     background: none;
 
     svg {
@@ -73,10 +86,32 @@
       }
     }
   }
+
+  &__menu:hover {
+    svg {
+      #background {
+        fill: var(--color-link-d1)
+      }
+    }
+  }
+
+  &__arrow:hover {
+    svg {
+      path {
+        fill: var(--color-link-d1)
+      }
+    }
+  }
 }
+
+
 
 .title {
   color: var(--color-link);
+
+  &__menu {
+
+  }
 
   &__sport {
     font-style: normal;
@@ -87,7 +122,7 @@
   }
 
   &__main {
-    margin-top: 326px;
+    margin-top: 290px;
     margin-left: 101px;
   }
 
@@ -108,3 +143,20 @@
 .footer {
   height: 131px;
 }
+
+.nav-list {
+  margin-top: 30px;
+}
+
+mat-drawer {
+  background: var(--color-link-d2);
+}
+
+.auth_button {
+  display: inline;
+}
+
+
+
+
+
