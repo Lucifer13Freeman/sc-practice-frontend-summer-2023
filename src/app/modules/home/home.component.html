@@ -31,12 +31,15 @@
             <svg-icon src="assets/icons/exit.svg" alt="exit"></svg-icon>
           </button>
 
-          <div class="auth_button">
+
           <ng-template #login>
+            <div class="auth_button">
             <button class="button button__enter" [routerLink]="['/auth/login']">Войти</button>
+            <button class="button button__register" [routerLink]="['/auth/register']">Регистрация</button>
+            </div>
           </ng-template>
-          <button class="button button__register" [routerLink]="['/auth/register']">Регистрация</button>
-          </div>
+
+
           <div class="title title__main">
             <h1 class="title__h1">ПОРТАЛ ДЛЯ ПРОВЕДЕНИЯ ТУРНИРОВ</h1>
             <p class="title__p">Открытое соревнование среди школьников</p>
