@@ -1,0 +1,73 @@
+<div *ngIf='model$ | async as model' class="container">
+
+  <mat-drawer-container autosize>
+    <mat-drawer #drawer mode="over">
+      <mat-nav-list class="nav-list">
+        <mat-list-item><button mat-button style="color: var(--color-link-l4)">ТУРНИРЫ</button></mat-list-item>
+        <mat-list-item><button mat-button style="color: var(--color-link-l4)">УЧАСТНИКИ</button></mat-list-item>
+        <mat-list-item><button mat-button style="color: var(--color-link-l4)">РЕЙТИНГ</button></mat-list-item>
+        <mat-list-item><button mat-button style="color: var(--color-link-l4)">ПРАВИЛА</button></mat-list-item>
+      </mat-nav-list>
+    </mat-drawer>
+
+    <mat-drawer-content>
+      <div class="main">
+
+        <div class="left">
+          <div class="button__container">
+            <button (click)="drawer.toggle()" class="button button__menu">
+              <svg-icon src="assets/icons/menu.svg" class="button__image" alt="menu"></svg-icon>
+            </button>
+            <p class="title bm">МЕНЮ</p>
+          </div>
+          <svg-icon src="assets/icons/image.svg" class="title sc" alt="sc"></svg-icon>
+        </div>
+
+        <div class="right">
+          <div class="tours">
+            <p class="title title__p">БЛИЖАЙШИЕ ТУРНИРЫ</p>
+          <button class="button button__full">ПОЛНЫЙ СПИСОК ТУРНИРОВ</button>
+          </div>
+          <div *ngFor="let tour of tournaments" class="title title__main">
+            <ul class="tour-list">
+              <li class="title title__p tour-list-elem">{{tour.sportType}}</li>
+              <li class="title title__p tour-list-elem">{{tour.date.toLocaleDateString()}}</li>
+              <li class="title title__p tour-list-elem">{{tour.tourType}}</li>
+              <li class="title title__p tour-list-elem">{{tour.players.city}}, {{tour.players.school}}</li>
+              <li class="title title__p tour-list-elem">{{tour.playersQuantity}} человек</li>
+            </ul>
+            <ul class="tour-list">
+              <li class="title title__p tour-list-elem">-------------------</li>
+              <li class="title title__p tour-list-elem">Дата</li>
+              <li class="title title__p tour-list-elem">Тип турнира</li>
+              <li class="title title__p tour-list-elem">Кто может участвовать</li>
+              <li class="title title__p tour-list-elem">Количество участников</li>
+            </ul>
+            <ul class="tour-list">
+              <li class="title title__p tour-list-elem">-------------------</li>
+              <li class="title title__p tour-list-elem">Дата</li>
+              <li class="title title__p tour-list-elem">Тип турнира</li>
+              <li class="title title__p tour-list-elem">Кто может участвовать</li>
+              <li class="title title__p tour-list-elem">Количество участников</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <button class="button button__arrow" [routerLink]="['/home']">
+          <svg-icon src="assets/icons/arrow.svg" alt="arrow"></svg-icon>
+        </button>
+        <div class="tour-button">
+          <button class="button button__finished">
+            <p>ЗАВЕРШЕННЫЕ ТУРНИРЫ<br>СМОТРЕТЬ РЕЗУЛЬТАТЫ</p>
+          </button>
+          <button class="button button__coming">
+            <p>ПРЕДСТОЯЩИЕ ТУРНИРЫ<br>ЗАПИСАТЬСЯ НА ТУРНИР</p>
+          </button>
+        </div>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+
+</div>
+

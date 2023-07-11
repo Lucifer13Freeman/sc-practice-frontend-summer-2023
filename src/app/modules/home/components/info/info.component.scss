@@ -1,0 +1,301 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+body {
+}
+
+.main {
+  display: flex;
+  margin: 54px 0 auto 34px;
+}
+
+.left {
+  display: flex;
+  width: 439px;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.button {
+  padding: 0;
+  margin: 0;
+
+
+  &__menu {
+    background: none;
+    width: 50px;
+    height: 50px;
+    margin-right: 36px;
+    margin-left: -2px;
+
+    svg {
+      #background {
+        fill: var(--color-link-d2)
+      }
+    }
+  }
+
+  &__finished {
+    width: 400px;
+    display: inline-block;
+    padding: 20px;
+    margin-left: 420px;
+    border-radius: 10rem;
+    color: var(--color-white);
+    text-transform: uppercase;
+    line-height: 20px;
+    font-size: 1rem;
+    letter-spacing: .10rem;
+    transition: all .3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--color-link-d2);
+      border-radius: 10rem;
+      z-index: -2;
+    }
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background-color: var(--color-white);
+      transition: all .3s;
+      border-radius: 10rem;
+      z-index: -1;
+    }
+    &:hover {
+      color: var(--color-link-d2);
+      &:before {
+        width: 100%;
+      }
+    }
+  }
+
+  &__coming {
+    width: 400px;
+    border: solid var(--color-link-d2);
+    display: inline-block;
+    padding: 20px;
+    border-radius: 10rem;
+    margin-left: 20px;
+    color: var(--color-link-d2);
+    text-transform: uppercase;
+    line-height: 20px;
+    font-size: 1rem;
+    letter-spacing: .10rem;
+    transition: all .3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--color-white);
+      border-radius: 10rem;
+      z-index: -2;
+    }
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background-color: var(--color-link-d2);
+      transition: all .3s;
+      border-radius: 10rem;
+      z-index: -1;
+    }
+    &:hover {
+      color: #fff;
+      &:before {
+        width: 100%;
+      }
+    }
+  }
+
+  &__full {
+    background: var(--color-link-d2);
+    width: 350px;
+    height: 70px;
+    border-radius: 50px;
+    margin-right: 10px;
+    text-align: center;
+    margin-left: 280px;
+    line-height: 26px;
+    font-size: 18px;
+    font-family: "Oswald", sans-serif;
+    display: inline;
+  }
+
+  &__exit {
+    background: none;
+    width: 55px;
+    height: 55px;
+    margin-right: 87px;
+    margin-left: auto;
+
+    svg {
+      path {
+        fill: var(--color-link-d2)
+      }
+    }
+  }
+
+  &__arrow {
+    width: 36px;
+    height: 40px;
+    margin-left: 38px;
+    background: none;
+    transform: rotate(180deg);
+    transform-origin: center center;
+
+    svg {
+      path {
+        fill: var(--color-link-d2)
+      }
+    }
+  }
+
+  &__menu:hover {
+    svg {
+      #background {
+        fill: var(--color-link-d3)
+      }
+    }
+  }
+
+  &__arrow:hover {
+    svg {
+      path {
+        fill: var(--color-link-d3)
+      }
+    }
+  }
+
+  &__register:hover {
+    color: var(--color-white);
+    background: var(--color-link);
+  }
+
+  &__coming:hover {
+    color: var(--color-white);
+    background: var(--color-link-d2);
+  }
+}
+
+
+
+.title {
+  color: var(--color-link-d2);
+
+  &__sport {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 70px;
+    line-height: 21px;
+    margin-top: 26px;
+  }
+
+  &__main {
+    margin-top: 150px;
+    margin-left: -10px;
+  }
+
+  &__h1 {
+    font-weight: 500;
+    font-size: 55px;
+    line-height: 48px;
+  }
+
+  &__p {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 21px;
+    margin: 0;
+  }
+}
+
+.footer {
+  margin-top: 78px;
+  height: 181px;
+  align-items: center;
+}
+
+.nav-list {
+  margin-top: 30px;
+}
+
+mat-drawer {
+  background: var(--color-link-d2);
+}
+
+.auth_button {
+  display: inline;
+}
+
+.tour-button {
+  margin-left: -10px;
+}
+
+.tours {
+  display: flex;
+}
+
+.tour-list {
+  width: 300px;
+  list-style-type: none;
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 20px;
+  border: 3px solid var(--color-link-d2);
+  border-radius: 30px;
+  padding: 10px;
+}
+
+.tour-list-elem {
+  margin-top: 10px;
+  color: var(--color-link-d2);
+}
+
+mat-drawer-content {
+  background: radial-gradient(#42aaff, #5d76cb);
+  font-family: "Oswald", sans-serif;
+}
+
+.sc {
+  margin-top: -170px;
+  svg {
+    g {
+      fill: var(--color-link-d2);
+    }
+  }
+}
+
+.bm {
+  margin-left: 5px;
+  font-size: 15px;
+}
