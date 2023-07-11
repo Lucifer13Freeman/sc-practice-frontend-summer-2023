@@ -16,7 +16,13 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./modules/home/home.module').then((m) => m.HomeModule),
+    loadChildren: () =>
+      import('./modules/home/components/home/home.module').then((m) => m.HomeModule),
+  },
+  {
+    path: 'info',
+    loadChildren: () =>
+      import('./modules/home/components/info/info.module').then((m) => m.InfoModule),
   },
   {
     path: '**',

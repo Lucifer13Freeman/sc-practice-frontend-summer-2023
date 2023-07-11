@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AUTH_STATE_NAME, AuthState } from '../auth/store/auth.state';
-import { selectIsAuth, selectProfile } from '../auth/store/auth.selectors';
-import { IProfile } from '../auth/interfaces/profile.interface';
+import { AUTH_STATE_NAME, AuthState } from '../../../auth/store/auth.state';
+import { selectIsAuth, selectProfile } from '../../../auth/store/auth.selectors';
+import { IProfile } from '../../../auth/interfaces/profile.interface';
 import { combineLatest, map, Observable } from 'rxjs';
-import { AuthActions } from '../auth/store/auth.actions';
+import { AuthActions } from '../../../auth/store/auth.actions';
 
 interface IViewModel {
   profile: IProfile | null;

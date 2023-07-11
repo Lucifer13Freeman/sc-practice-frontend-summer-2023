@@ -1,7 +1,7 @@
 <div *ngIf='model$ | async as model' class="container">
 
   <mat-drawer-container autosize>
-    <mat-drawer #drawer mode="side">
+    <mat-drawer #drawer mode="over">
       <mat-nav-list class="nav-list">
         <mat-list-item><button mat-button style="color: var(--color-link-l4)">ТУРНИРЫ</button></mat-list-item>
         <mat-list-item><button mat-button style="color: var(--color-link-l4)">УЧАСТНИКИ</button></mat-list-item>
@@ -18,9 +18,9 @@
             <button (click)="drawer.toggle()" class="button button__menu">
               <svg-icon src="assets/icons/menu.svg" class="button__image" alt="menu"></svg-icon>
             </button>
-            <p class="title">МЕНЮ</p>
+            <p class="title bm">МЕНЮ</p>
           </div>
-          <p class="title title__sport">SPORT</p>
+          <svg-icon src="assets/icons/image.svg" class="title sc" alt="sc"></svg-icon>
         </div>
 
         <div class="right">
@@ -39,17 +39,26 @@
             </div>
           </ng-template>
 
-
           <div class="title title__main">
-            <h1 class="title__h1">ПОРТАЛ ДЛЯ ПРОВЕДЕНИЯ ТУРНИРОВ</h1>
-            <p class="title__p">Открытое соревнование среди школьников</p>
+            <h1 class="title__h1">ТУРНИРЫ</h1>
+            <div class="p_container">
+              <p class="title title__p ">ОТКРЫТЫЕ СОРЕВНОВАНИЯ СРЕДИ ШКОЛЬНИКОВ</p>
+            </div>
           </div>
         </div>
       </div>
       <div class="footer">
-        <button class="button button__arrow">
+        <button class="button button__arrow" [routerLink]="['/info']">
           <svg-icon src="assets/icons/arrow.svg" alt="arrow"></svg-icon>
         </button>
+        <div class="tour-button">
+          <button class="button button__finished">
+            <p>ЗАВЕРШЕННЫЕ ТУРНИРЫ<br>СМОТРЕТЬ РЕЗУЛЬТАТЫ</p>
+          </button>
+          <button class="button button__coming">
+            <p>ПРЕДСТОЯЩИЕ ТУРНИРЫ<br>ЗАПИСАТЬСЯ НА ТУРНИР</p>
+          </button>
+        </div>
       </div>
     </mat-drawer-content>
   </mat-drawer-container>
