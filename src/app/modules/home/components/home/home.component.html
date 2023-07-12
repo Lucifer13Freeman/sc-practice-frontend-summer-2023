@@ -1,11 +1,12 @@
 <div *ngIf='model$ | async as model' class="container">
-  <div #slideUp>
+  <div #slideUp id="head">
   <mat-drawer-container autosize>
     <mat-drawer #drawer mode="over">
       <mat-nav-list class="nav-list">
-        <mat-list-item><button mat-button style="color: var(--color-link-l4)">ПРОФИЛЬ</button></mat-list-item>
-        <mat-list-item><button mat-button style="color: var(--color-link-l4)">ПОЛНЫЙ СПИСОК ТУРНИРОВ</button></mat-list-item>
-        <mat-list-item><button mat-button style="color: var(--color-link-l4)">АДМИНИСТРАТОР</button></mat-list-item>
+        <mat-list-item><mat-icon style="color: var(--color-link-d4)">person</mat-icon><button mat-button style="color: var(--color-link-l4)">ПРОФИЛЬ</button></mat-list-item>
+        <mat-list-item><mat-icon style="color: var(--color-link-d4)">list_alt</mat-icon><button mat-button style="color: var(--color-link-l4)">ПОЛНЫЙ СПИСОК ТУРНИРОВ</button></mat-list-item>
+        <mat-list-item><mat-icon style="color: var(--color-link-d4)">supervisor_account</mat-icon><button mat-button style="color: var(--color-link-l4)">АДМИНИСТРАТОР</button></mat-list-item>
+        <mat-list-item class="arrow_back" (click)="drawer.toggle()"><mat-icon style="color: var(--color-link-d4)">arrow_back</mat-icon></mat-list-item>
       </mat-nav-list>
     </mat-drawer>
 
@@ -24,7 +25,7 @@
           <svg-icon src="assets/icons/image.svg" class="title sc" alt="sc"></svg-icon>
 
           <div *ngIf='!isSlided; else slideBack'>
-            <button (scroll)="onScroll($event)" (click)="onClick(slideDown)" class="button button__arrow">
+            <button (scroll)="onScroll()" (click)="onClick(slideDown)" class="button button__arrow">
               <svg-icon src="assets/icons/arrow.svg" alt="arrow"></svg-icon>
             </button>
           </div>
@@ -61,8 +62,8 @@
         </div>
       </div>
 
-      <div class="footer">
-        <div class="tours" #slideDown>
+      <div class="footer" #slideDown id="foot">
+        <div class="tours" >
           <p class="title title__p2">БЛИЖАЙШИЕ ТУРНИРЫ</p>
         </div>
         <div *ngFor="let tour of tournaments" class="title title__main tr">

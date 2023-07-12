@@ -52,13 +52,12 @@ export class HomeComponent implements OnInit {
   }
 
   public onClick(el: HTMLElement) {
-    this.isSlided = !this.isSlided;
     el.scrollIntoView({ behavior: 'smooth' });
   }
 
   @HostListener('window:scroll', ['$event'])
-  public onScroll(event: Event) {
-    if (window.pageYOffset >= 80) {
+  public onScroll() {
+    if (window.scrollY >= 200) {
       this.isSlided = true;
     } else {
       this.isSlided = false;

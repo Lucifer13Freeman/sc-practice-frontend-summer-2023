@@ -20,11 +20,6 @@ const routes: Routes = [
       import('./modules/home/components/home/home.module').then((m) => m.HomeModule),
   },
   {
-    path: 'info',
-    loadChildren: () =>
-      import('./modules/home/components/info/info.module').then((m) => m.InfoModule),
-  },
-  {
     path: '**',
     redirectTo: 'home',
   },
