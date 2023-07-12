@@ -1,0 +1,49 @@
+.modal-form {
+    .modal-form__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .modal__title {
+            letter-spacing: 2px;
+            font-size: 20px;
+            color: var(--color-link-d1);
+            text-transform: uppercase;
+        }
+
+        .modal__close-btn {
+            cursor: pointer;
+        }
+    }
+
+    .modal-form__footer {
+        margin-left: 30%;
+        padding-top: 30px;
+        border-top: 2px solid var(--color-base-d3);
+        width: 70%;
+        text-align: start;
+
+        button {
+            padding: 25px 10px;
+        }
+    }
+}
+
+.modal__text-field {
+    margin-top: 30px;
+
+    .text-field__wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .text-field__label {
+            display: block;
+            width: 20%;
+        }
+
+        .text-field, .select {
+            width: 70%;
+        }
+    }
+}
