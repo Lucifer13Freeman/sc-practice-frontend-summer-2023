@@ -1,7 +1,7 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { ICredentials } from '../interfaces/credentials.interface';
 import { IProfile } from '../interfaces/profile.interface';
-import { IRegisterData } from '../interfaces/register-data.interface';
+import { IRegisterDataStudent } from '../interfaces/register-data.interface';
 
 export const AuthActions = createActionGroup({
   source: 'Auth',
@@ -10,7 +10,7 @@ export const AuthActions = createActionGroup({
     'Login Success': props<{ token: string }>(),
     'Login Failure': props<{ error: unknown }>(),
 
-    Register: props<{ data: IRegisterData }>(),
+    Register: props<{ data: IRegisterDataStudent }>(),
     'Register Success': emptyProps(),
     'Register Failure': props<{ error: unknown }>(),
 

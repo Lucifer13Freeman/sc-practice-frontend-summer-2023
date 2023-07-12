@@ -1,7 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { RegisterSuccessModalComponent } from '../../modals/register-success/register-success-modal.component';
-import { IRegisterData } from '../../interfaces/register-data.interface';
+import {
+  IRegisterDataStudent,
+  IRegisterDataTeacher,
+} from '../../interfaces/register-data.interface';
 import { AuthValidationService } from '../../validation/auth-validation.service';
 import { ModalService } from '../../../core/modules/modal/modal.service';
 import { Store } from '@ngrx/store';
@@ -12,7 +15,7 @@ interface ISelectViewData {
   name: string;
 }
 
-type TControlName = keyof IRegisterData | 'password1' | 'password2';
+type TControlNameTeacher = keyof IRegisterDataTeacher | 'password1' | 'password2';
 
 @Component({
   selector: 'app-register',
@@ -24,6 +27,7 @@ export class RegisterComponent implements OnInit {
   public form!: FormGroup;
   public isShownPassword1: boolean = false;
   public isShownPassword2: boolean = false;
+  public role: string = 'teacher';
 
   public cities: ISelectViewData[] = [
     { value: '', name: 'Выберите из списка...' },
@@ -33,11 +37,18 @@ export class RegisterComponent implements OnInit {
     { value: 'samara', name: 'Самара' },
     { value: 'perm', name: 'Пермь' },
   ];
+  // Добавил массив предпочтений
+  public preferences = [
+    { value: 'Футбол', name: 'Футбол' },
+    { value: 'Волейбол', name: 'Волейбол' },
+    { value: 'Хоккей', name: 'Хоккей' },
+  ];
+  // поменял values у школ
   public schools: ISelectViewData[] = [
     { value: '', name: 'Выберите из списка...' },
-    { value: 'petersburg', name: '11' },
-    { value: 'samara', name: '22' },
-    { value: 'perm', name: '33' },
+    { value: '№11', name: '№11' },
+    { value: '№22', name: '№22' },
+    { value: '№33', name: '№33' },
   ];
   public classRooms: ISelectViewData[] = [
     { value: '', name: 'Выберите из списка...' },
@@ -52,7 +63,6 @@ export class RegisterComponent implements OnInit {
     private readonly modalService: ModalService,
     private readonly validationService: AuthValidationService
   ) {}
-
   ngOnInit(): void {
     const usernameValidators: ValidatorFn[] = [
       this.validationService.usernameSpecialSymbols,
@@ -64,12 +74,16 @@ export class RegisterComponent implements OnInit {
       Validators.minLength(8),
       this.validationService.passwordSpecialSymbols,
     ];
-
+    // Добавил сюда предпочтения
     this.form = this.fb.group({
       surname: ['', [...usernameValidators, Validators.required]],
       name: ['', [...usernameValidators, Validators.required]],
       patronymic: ['', usernameValidators],
       city: ['', []],
+      role: ['', []],
+      phone: ['', []],
+      birthday: ['', []],
+      preferences: ['', []],
       school: ['', []],
       classRoom: ['', []],
       email: [
@@ -87,26 +101,50 @@ export class RegisterComponent implements OnInit {
       ),
     });
   }
-
+  //Добавил предпочтения
   public submit(): void {
-    const formSubmit: IRegisterData = {
-      surname: this.form.controls['surname'].value,
-      name: this.form.controls['name'].value,
-      patronymic: this.form.controls['patronymic'].value,
-      email: this.form.controls['email'].value,
-      city: this.form.controls['city'].value,
-      school: this.form.controls['school'].value,
-      classRoom: this.form.controls['classRoom'].value,
-      password: this.form.controls['password'].value['password'],
-    };
-
-    this.modalService.open({
-      component: RegisterSuccessModalComponent,
-      context: formSubmit,
-    });
+    if (this.form.controls['role'].value == 'Учитель') {
+      const formSubmit: IRegisterDataTeacher = {
+        surname: this.form.controls['surname'].value,
+        name: this.form.controls['name'].value,
+        role: this.form.controls['role'].value,
+        patronymic: this.form.controls['patronymic'].value,
+        phone: this.form.controls['phone'].value,
+        birthday: this.form.controls['birthday'].value,
+        email: this.form.controls['email'].value,
+        city: this.form.controls['city'].value,
+        school: this.form.controls['school'].value,
+        classRoom: this.form.controls['classRoom'].value,
+        password: this.form.controls['password'].value['password'],
+      };
+      console.log(formSubmit);
+      this.modalService.open({
+        component: RegisterSuccessModalComponent,
+        context: formSubmit,
+      });
+    } else {
+      const formSubmit: IRegisterDataStudent = {
+        surname: this.form.controls['surname'].value,
+        name: this.form.controls['name'].value,
+        role: this.form.controls['role'].value,
+        patronymic: this.form.controls['patronymic'].value,
+        phone: this.form.controls['phone'].value,
+        birthday: this.form.controls['birthday'].value,
+        email: this.form.controls['email'].value,
+        city: this.form.controls['city'].value,
+        preferences: this.form.controls['preferences'].value,
+        school: this.form.controls['school'].value,
+        classRoom: this.form.controls['classRoom'].value,
+        password: this.form.controls['password'].value['password'],
+      };
+      console.log(formSubmit);
+      this.modalService.open({
+        component: RegisterSuccessModalComponent,
+        context: formSubmit,
+      });
+    }
   }
-
-  public hasError(controlName: TControlName): boolean {
+  public hasError(controlName: TControlNameTeacher): boolean {
     if (controlName.includes('password')) {
       const passwordGroup = this.form.get('password');
       const password = passwordGroup?.get(controlName);
@@ -122,7 +160,7 @@ export class RegisterComponent implements OnInit {
     );
   }
 
-  public getErrors(controlName: TControlName): string {
+  public getErrors(controlName: TControlNameTeacher): string {
     if (controlName.includes('password')) {
       const passwordGroup = this.form.get('password');
       return [
@@ -136,4 +174,6 @@ export class RegisterComponent implements OnInit {
       .filter((v) => typeof v === 'string' || v instanceof String)
       .join('; ');
   }
+
+  protected readonly console = console;
 }
