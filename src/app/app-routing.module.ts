@@ -22,6 +22,7 @@ const routes: Routes = [
     path: 'users',
     loadChildren: () => import('./modules/users/users.module').then((m) => m.UsersModule),
   },
+  { path: 'tournaments', loadChildren: () => import('./modules/tournaments/tournaments.module').then(m => m.TournamentsModule) },
   {
     path: '**',
     redirectTo: 'home',
