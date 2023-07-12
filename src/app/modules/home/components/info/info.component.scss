@@ -262,11 +262,13 @@ mat-drawer {
 }
 
 .tours {
+  margin-top: 50px;
+  margin-left: 50px;
   display: flex;
 }
 
 .tour-list {
-  width: 300px;
+
   list-style-type: none;
   display: inline-block;
   margin-left: 10px;

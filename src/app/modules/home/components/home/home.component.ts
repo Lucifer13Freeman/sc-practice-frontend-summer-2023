@@ -1,10 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AUTH_STATE_NAME, AuthState } from '../../../auth/store/auth.state';
 import { selectIsAuth, selectProfile } from '../../../auth/store/auth.selectors';
 import { IProfile } from '../../../auth/interfaces/profile.interface';
 import { combineLatest, map, Observable } from 'rxjs';
 import { AuthActions } from '../../../auth/store/auth.actions';
+import { ITournament } from '../../interfaces/tournament.interface';
+import { supportsScrollBehavior } from '@angular/cdk/platform';
 
 interface IViewModel {
   profile: IProfile | null;
@@ -19,6 +21,19 @@ interface IViewModel {
 })
 export class HomeComponent implements OnInit {
   public model$!: Observable<IViewModel>;
+  public isSlided = false;
+  public tournaments: ITournament[] = [
+    {
+      sportType: 'Шахматы',
+      date: new Date('2023-03-20'),
+      tourType: 'blahblah',
+      players: {
+        school: 'sdfdsff',
+        city: 'yaroslavl',
+      },
+      playersQuantity: 4,
+    },
+  ];
 
   constructor(private store: Store<{ [AUTH_STATE_NAME]: AuthState }>) {}
 
@@ -34,5 +49,19 @@ export class HomeComponent implements OnInit {
   public logout($event: Event): void {
     $event.stopPropagation();
     this.store.dispatch(AuthActions.logout());
+  }
+
+  public onClick(el: HTMLElement) {
+    this.isSlided = !this.isSlided;
+    el.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  public onScroll(event: Event) {
+    if (window.pageYOffset >= 80) {
+      this.isSlided = true;
+    } else {
+      this.isSlided = false;
+    }
   }
 }
