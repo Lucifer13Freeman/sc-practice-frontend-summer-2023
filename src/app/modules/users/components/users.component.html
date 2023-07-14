@@ -35,7 +35,7 @@
         </mat-form-field>
     </div>
     <div class="users__items">
-        <div class="users__child" *ngFor="let userData of usersData.users">
+        <div class="users__child" *ngFor="let userData of usersData.users | filterUsers: filtersTotal.searchValue">
             <div class="users__child-work-info">
                 <h3>{{userData.name}}</h3>
                 <mat-select placeholder="Текущие турниры" [(ngModel)]="filtersTotal.filterType" class="users__child-select">
