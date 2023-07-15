@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { AuthValidationService } from './validation/auth-validation.service';
 import { RegisterSuccessModalComponent } from './modals/register-success/register-success-modal.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent, RegisterSuccessModalComponent],
@@ -23,6 +24,7 @@ import { RegisterSuccessModalComponent } from './modals/register-success/registe
     ReactiveFormsModule,
     RouterModule,
     AngularSvgIconModule,
+    MatSelectModule,
   ],
   bootstrap: [LoginComponent],
 })

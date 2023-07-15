@@ -12,12 +12,13 @@
 
 .form {
   display: flex;
+  justify-content: center;
   flex-direction: column;
   padding: 10px;
 }
 
 .title {
-  margin: 0;
+  margin-left: 50px;
   font-weight: 500;
   font-size: 24px;
   line-height: 58px;
@@ -26,11 +27,12 @@
 }
 
 .button {
+  margin-left: 50px;
   margin-top: 35px;
   //background: #585858;
   //color: white;
-  width: 241px;
-  height: 69px;
+  width: 195px;
+  height: 50px;
   margin-bottom: 54px;
   border-radius: 15px;
   //cursor: pointer;
@@ -64,6 +66,13 @@
 .select {
   width: 376px;
   height: 36px;
+}
+.multiselect{
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  color: #343434;;
+  background: #E4E8F5;
+  padding: 5px;
 }
 
 .text-field {

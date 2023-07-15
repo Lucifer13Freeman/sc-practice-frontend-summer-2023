@@ -1,7 +1,232 @@
 <div class="container">
   <p class="title">Регистрация</p>
-  <form class="form" [formGroup]="form" (submit)="submit()">
+  <!-- Добавил выбор роли, ученик или учитель -->
+  <div>
+    <button class=button (click)="role = 'teacher'; form.get('role')?.setValue('Учитель')">Учитель</button>
+    <button class=button (click)="role = 'student'; form.get('role')?.setValue('Ученик')">Ученик</button>
+  </div>
+  <!-- Проверка роли и вывод форм в соответствии с результатом -->
+  <!-- Первая форма -->
+  <form *ngIf="role === 'teacher'" class="form" [formGroup]="form" (submit)="submit()">
+    <h1>Учитель</h1>
+    <div class="text-field__wrapper">
+      <label class="text-field__label" for="surname">Фамилия</label>
+      <div class="text-field">
+        <input
+          formControlName="surname"
+          name="surname"
+          class="text-field__input"
+          type="text"
+          id="Tsurname"
+          placeholder="Введите фамилию"
+        />
+        <div *ngIf="hasError('surname')"
+             class="text-field__message text-field__message_invalid"
+        >{{ getErrors('surname') }}
+        </div>
+      </div>
+    </div>
 
+
+    <div class="text-field__wrapper">
+      <label class="text-field__label" for="name">Имя</label>
+      <div class="text-field">
+        <input
+          formControlName="name"
+          name="name"
+          class="text-field__input"
+          type="text"
+          id="Tname"
+          placeholder="Введите имя"
+        />
+        <div *ngIf="hasError('name')"
+             class="text-field__message text-field__message_invalid"
+        >{{ getErrors('name') }}
+        </div>
+      </div>
+    </div>
+
+
+    <div class="text-field__wrapper">
+      <label class="text-field__label" for="name">Отчество</label>
+      <div class="text-field">
+        <input
+          formControlName="patronymic"
+          name="patronymic"
+          class="text-field__input"
+          type="text"
+          id="Tpatronymic"
+          placeholder="Введите отчество"
+        />
+        <div *ngIf="hasError('patronymic')"
+             class="text-field__message text-field__message_invalid"
+        >{{ getErrors('patronymic') }}
+        </div>
+      </div>
+    </div>
+
+    <div class="text-field__wrapper">
+      <label class="text-field__label" for="name">Дата рождения</label>
+      <div class="text-field">
+        <input
+          formControlName="birthday"
+          name="birthday"
+          class="text-field__input"
+          type="date"
+          id="Tbirthday"
+          placeholder="Введите дату рождения"
+        />
+        <div *ngIf="hasError('birthday')"
+             class="text-field__message text-field__message_invalid"
+        >{{ getErrors('birthday') }}
+        </div>
+      </div>
+    </div>
+
+    <div class="text-field__wrapper">
+      <label class="text-field__label" for="name">Номер</label>
+      <div class="text-field">
+        <input
+          formControlName="phone"
+          name="phone"
+          class="text-field__input"
+          type="tel"
+          id="Tphone"
+          placeholder="Введите номер телефона"
+        />
+        <div *ngIf="hasError('phone')"
+             class="text-field__message text-field__message_invalid"
+        >{{ getErrors('phone') }}
+        </div>
+      </div>
+    </div>
+
+    <div class="text-field__wrapper">
+      <label class="text-field__label" for="email">E-Mail</label>
+      <div class="text-field">
+        <input
+          formControlName="email"
+          name="email"
+          class="text-field__input"
+          type="text"
+          id="Temail"
+          placeholder="Введите email"
+        />
+        <div *ngIf="hasError('email')"
+             class="text-field__message text-field__message_invalid"
+        >{{ getErrors('email') }}
+        </div>
+      </div>
+    </div>
+
+    <div class="text-field__wrapper">
+      <label class="text-field__label" for="city">Город</label>
+      <div class="select">
+        <select
+          formControlName="city"
+          id="Tcity"
+          name="city"
+        >
+          <option *ngFor="let city of cities" value="{{city.value}}">{{city.name}}</option>
+        </select>
+        <div *ngIf="hasError('city')"
+             class="text-field__message text-field__message_invalid"
+        >{{ getErrors('city') }}
+        </div>
+      </div>
+    </div>
+
+
+    <div class="text-field__wrapper">
+      <label class="text-field__label" for="city">Школа</label>
+      <div class="text-field">
+        <mat-select formControlName="school" class="multiselect" multiple>
+          <mat-option *ngFor="let school of schools | slice:1:4" value="{{school.value}}">{{school.name}}</mat-option>
+        </mat-select>
+      </div>
+    </div>
+
+
+    <div class="text-field__wrapper">
+      <label class="text-field__label" for="city">Класс</label>
+      <div class="text-field">
+        <mat-select formControlName="classRoom" class="multiselect" multiple>
+          <mat-option *ngFor="let classRoom of classRooms | slice:1:4" value="{{classRoom.value}}">{{classRoom.name}}</mat-option>
+        </mat-select>
+      </div>
+    </div>
+
+
+    <ng-container formGroupName="password">
+      <div class="text-field__wrapper">
+        <label class="text-field__label" for="password1">Пароль</label>
+        <div class="text-field">
+          <input
+            class="text-field__input"
+            [type]="isShownPassword1 ? 'text' : 'password'"
+            name="password1"
+            id="Tpassword1"
+            placeholder="Введите пароль"
+            formControlName="password1"
+            autocomplete="new-password-1"
+          />
+          <svg-icon
+            class="text-field__icon text-field__icon-after cursor-pointer"
+            (click)="isShownPassword1 = !isShownPassword1"
+            [src]="'assets/icons/' + (isShownPassword1 ? 'eye.svg' : 'eye-crossed.svg')"
+          ></svg-icon>
+
+          <span
+            *ngIf="hasError('password1')"
+            class="text-field__message text-field__message_invalid"
+          >{{ getErrors('password1') }}
+          </span>
+        </div>
+      </div>
+
+
+      <div class="text-field__wrapper">
+        <label class="text-field__label" for="password1">Повторите пароль</label>
+        <div class="text-field">
+          <input
+            class="text-field__input"
+            [type]="isShownPassword2 ? 'text' : 'password'"
+            name="password2"
+            id="Tpassword2"
+            placeholder="Введите пароль"
+            formControlName="password2"
+            autocomplete="new-password-2"
+          />
+          <svg-icon
+            class="text-field__icon text-field__icon-after cursor-pointer"
+            (click)="isShownPassword2 = !isShownPassword2"
+            [src]="'assets/icons/' + (isShownPassword2 ? 'eye.svg' : 'eye-crossed.svg')"
+          ></svg-icon>
+
+          <span
+            *ngIf="hasError('password2')"
+            class="text-field__message text-field__message_invalid"
+          >{{ getErrors('password2') }}
+          </span>
+        </div>
+      </div>
+
+    </ng-container>
+
+
+    <div class="button__container">
+      <button
+        [disabled]='form.invalid'
+        (submit)="submit()"
+        class="button"
+      >ЗАРЕГИСТРИРОВАТЬСЯ
+      </button>
+    </div>
+  </form>
+
+  <!--  ВТОРАЯ ФОРМА -->
+  <form *ngIf="role ==='student'" class="form" [formGroup]="form" (submit)="submit()">
+    <h1>Ученик</h1>
     <div class="text-field__wrapper">
       <label class="text-field__label" for="surname">Фамилия</label>
       <div class="text-field">
@@ -58,6 +283,51 @@
       </div>
     </div>
 
+    <div class="text-field__wrapper">
+      <label class="text-field__label" for="name">Дата рождения</label>
+      <div class="text-field">
+        <input
+          formControlName="birthday"
+          name="birthday"
+          class="text-field__input"
+          type="date"
+          id="birthday"
+          placeholder="Введите дату рождения"
+        />
+        <div *ngIf="hasError('birthday')"
+             class="text-field__message text-field__message_invalid"
+        >{{ getErrors('birthday') }}
+        </div>
+      </div>
+    </div>
+
+    <div class="text-field__wrapper">
+      <label class="text-field__label" for="name">Номер</label>
+      <div class="text-field">
+        <input
+          formControlName="phone"
+          name="phone"
+          class="text-field__input"
+          type="tel"
+          id="phone"
+          placeholder="Введите номер телефона"
+        />
+        <div *ngIf="hasError('phone')"
+             class="text-field__message text-field__message_invalid"
+        >{{ getErrors('phone') }}
+        </div>
+      </div>
+    </div>
+
+    <div class="text-field__wrapper">
+      <label class="text-field__label" for="name">Предпочтения</label>
+      <div class="text-field">
+            <mat-select formControlName="preferences" class="multiselect" multiple>
+              <mat-option *ngFor="let prefer of preferences" [value]="prefer.value">{{prefer.name}}</mat-option>
+            </mat-select>
+      </div>
+    </div>
+
 
     <div class="text-field__wrapper">
       <label class="text-field__label" for="email">E-Mail</label>
@@ -68,7 +338,7 @@
           class="text-field__input"
           type="text"
           id="email"
-          placeholder="Введите отчество"
+          placeholder="Введите email"
         />
         <div *ngIf="hasError('email')"
              class="text-field__message text-field__message_invalid"
@@ -76,7 +346,6 @@
         </div>
       </div>
     </div>
-
 
     <div class="text-field__wrapper">
       <label class="text-field__label" for="city">Город</label>
@@ -194,12 +463,17 @@
         [disabled]='form.invalid'
         (submit)="submit()"
         class="button"
-      >ЗАРЕГИСТРИРОВАТЬСЯ</button>
+      >ЗАРЕГИСТРИРОВАТЬСЯ
+      </button>
     </div>
-
   </form>
-
+  <button class="button__support-container button__support">Обратиться в тех.поддержку</button>
+  <button class="button__support-container button__support"
+          [routerLink]="['/home']"
+          type="button"
+  >На главную
+  </button>
 </div>
-<button class="button__support-container button__support">Обратиться в тех.поддержку</button>
+
 
 

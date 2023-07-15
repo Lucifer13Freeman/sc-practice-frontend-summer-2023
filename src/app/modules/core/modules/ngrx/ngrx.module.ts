@@ -4,6 +4,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import {
   NavigationActionTiming,
+  routerReducer,
   RouterState,
   StoreRouterConnectingModule,
 } from '@ngrx/router-store';
@@ -11,7 +12,7 @@ import { ROUTER_STATE_NAME } from './router.selectors';
 
 @NgModule({
   imports: [
-    StoreModule.forRoot({}),
+    StoreModule.forRoot({ [ROUTER_STATE_NAME]: routerReducer }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode(), name: 'NgRx STS Store' }),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot({

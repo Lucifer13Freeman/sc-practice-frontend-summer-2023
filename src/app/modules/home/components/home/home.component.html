@@ -1,0 +1,100 @@
+<div *ngIf='model$ | async as model' class="container">
+  <div #slideUp id="head">
+  <mat-drawer-container autosize>
+    <mat-drawer #drawer mode="over">
+      <mat-nav-list class="nav-list">
+        <mat-list-item><mat-icon style="color: var(--color-link-d4)">person</mat-icon><button mat-button style="color: var(--color-link-l4)">ПРОФИЛЬ</button></mat-list-item>
+        <mat-list-item><mat-icon style="color: var(--color-link-d4)">list_alt</mat-icon><button mat-button style="color: var(--color-link-l4)">ПОЛНЫЙ СПИСОК ТУРНИРОВ</button></mat-list-item>
+        <mat-list-item><mat-icon style="color: var(--color-link-d4)">supervisor_account</mat-icon><button mat-button style="color: var(--color-link-l4)">АДМИНИСТРАТОР</button></mat-list-item>
+        <mat-list-item class="arrow_back" (click)="drawer.toggle()"><mat-icon style="color: var(--color-link-d4)">arrow_back</mat-icon></mat-list-item>
+      </mat-nav-list>
+    </mat-drawer>
+
+    <mat-drawer-content>
+
+      <div class="main">
+
+        <div class="left">
+
+          <div class="button__container">
+            <button (click)="drawer.toggle()" class="button button__menu">
+              <svg-icon src="assets/icons/menu.svg" class="button__image" alt="menu"></svg-icon>
+            </button>
+            <p class="title bm">МЕНЮ</p>
+          </div>
+          <svg-icon src="assets/icons/image.svg" class="title sc" alt="sc"></svg-icon>
+
+          <div *ngIf='!isSlided; else slideBack'>
+            <button (scroll)="onScroll()" (click)="onClick(slideDown)" class="button button__arrow">
+              <svg-icon src="assets/icons/arrow.svg" alt="arrow"></svg-icon>
+            </button>
+          </div>
+          <ng-template #slideBack>
+            <button (click)="onClick(slideUp)" class="button button__arrow1">
+              <svg-icon src="assets/icons/arrow.svg" alt="arrow"></svg-icon>
+            </button>
+          </ng-template>
+
+        </div>
+
+        <div class="right">
+
+          <button *ngIf='model.isAuth; else login'
+                  class="button button__exit"
+                  (click)='logout($event)'>
+            <svg-icon src="assets/icons/exit.svg" alt="exit"></svg-icon>
+          </button>
+
+
+          <ng-template #login>
+            <div class="auth_button">
+              <button mat-stroked-button-button color="white" class="button button__enter" [routerLink]="['/auth/login']">Войти</button>
+              <button mat-stroked-button-button color="accent" class="button button__register" [routerLink]="['/auth/register']">Регистрация</button>
+            </div>
+          </ng-template>
+
+          <div class="title title__main">
+            <h1 class="title__h1">ТУРНИРЫ</h1>
+            <div class="p_container">
+              <p class="title title__p ">ОТКРЫТЫЕ СОРЕВНОВАНИЯ СРЕДИ ШКОЛЬНИКОВ</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer" #slideDown id="foot">
+        <div class="tours" >
+          <p class="title title__p2">БЛИЖАЙШИЕ ТУРНИРЫ</p>
+        </div>
+        <div *ngFor="let tour of tournaments" class="title title__main tr">
+          <ul class="tour-list">
+            <li class="title title__p tour-list-elem">{{tour.sportType}}</li>
+            <li class="title title__p tour-list-elem">{{tour.date.toLocaleDateString()}}</li>
+            <li class="title title__p tour-list-elem">{{tour.tourType}}</li>
+            <li class="title title__p tour-list-elem">{{tour.players.city}}, {{tour.players.school}}</li>
+            <li class="title title__p tour-list-elem">{{tour.playersQuantity}} человек</li>
+          </ul>
+          <ul class="tour-list">
+            <li class="title title__p tour-list-elem">-------------------</li>
+            <li class="title title__p tour-list-elem">Дата</li>
+            <li class="title title__p tour-list-elem">Тип турнира</li>
+            <li class="title title__p tour-list-elem">Кто может участвовать</li>
+            <li class="title title__p tour-list-elem">Количество участников</li>
+          </ul>
+          <ul class="tour-list">
+            <li class="title title__p tour-list-elem">-------------------</li>
+            <li class="title title__p tour-list-elem">Дата</li>
+            <li class="title title__p tour-list-elem">Тип турнира</li>
+            <li class="title title__p tour-list-elem">Кто может участвовать</li>
+            <li class="title title__p tour-list-elem">Количество участников</li>
+          </ul>
+        </div>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+  </div>
+</div>
+
+
+
+

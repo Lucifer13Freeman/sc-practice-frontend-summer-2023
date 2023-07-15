@@ -1,0 +1,103 @@
+<div [formGroup]="form" class="modal-form">
+    <div class="modal-form__header">
+        <h3 class="modal__title">{{title}} пользователя</h3>
+        <mat-icon class="modal__close-btn" (click)="closeModal()">highlight_off</mat-icon>
+    </div>
+    <div class="modal__text-field">
+        <div class="text-field__wrapper">
+            <label class="text-field__label" for="surname">Фамилия</label>
+            <div class="text-field">
+                <input formControlName="surname" name="surname" class="text-field__input" type="text" id="surname"
+                    placeholder="Введите фамилию" />
+                <!-- <div *ngIf="hasError('surname')" class="text-field__message text-field__message_invalid">
+                </div> -->
+            </div>
+        </div>
+        <div class="text-field__wrapper">
+            <label class="text-field__label" for="username">Имя</label>
+            <div class="text-field">
+                <input formControlName="username" name="username" class="text-field__input" type="text" id="username"
+                    placeholder="Введите имя" />
+                <!-- <div *ngIf="hasError('surname')" class="text-field__message text-field__message_invalid">
+                </div> -->
+            </div>
+        </div>
+        <div class="text-field__wrapper">
+            <label class="text-field__label" for="patronymic">Отчество</label>
+            <div class="text-field">
+                <input formControlName="patronymic" name="patronymic" class="text-field__input" type="text"
+                    id="patronymic" placeholder="Введите Отчество" />
+                <!-- <div *ngIf="hasError('surname')" class="text-field__message text-field__message_invalid">
+                </div> -->
+            </div>
+        </div>
+        <div class="text-field__wrapper">
+            <label class="text-field__label" for="email">E-mail</label>
+            <div class="text-field">
+                <input formControlName="email" name="email" class="text-field__input" type="email" id="email"
+                    placeholder="Введите E-mail" />
+                <!-- <div *ngIf="hasError('surname')" class="text-field__message text-field__message_invalid">
+                </div> -->
+            </div>
+        </div>
+        <div class="text-field__wrapper">
+            <label class="text-field__label" for="city">Город</label>
+            <div class="select">
+                <select formControlName="city" id="city" name="city" placeholder="Выберите из списка">
+                    <option *ngFor="let city of cities" value="{{city.value}}">{{city.name}}</option>
+                </select>
+                <!-- <div *ngIf="hasError('city')" class="text-field__message text-field__message_invalid">
+                </div> -->
+            </div>
+        </div>
+        <div class="text-field__wrapper">
+            <label class="text-field__label" for="school">Школа</label>
+            <div class="select">
+                <select formControlName="school" id="school" name="school" placeholder="Выберите из списка">
+                    <option *ngFor="let school of schools" value="{{school.value}}">{{school.name}}</option>
+                </select>
+                <!-- <div *ngIf="hasError('city')" class="text-field__message text-field__message_invalid">
+                </div> -->
+            </div>
+        </div>
+        <div class="text-field__wrapper">
+            <label class="text-field__label" for="classroom">Класс</label>
+            <div class="select">
+                <select formControlName="classRoom" id="classroom" name="classroom" placeholder="Выберите из списка">
+                    <option *ngFor="let classRoom of classRooms" value="{{classRoom.value}}">{{classRoom.name}}</option>
+                </select>
+                <!-- <div *ngIf="hasError('city')" class="text-field__message text-field__message_invalid">
+                </div> -->
+            </div>
+        </div>
+        <div class="text-field__wrapper">
+            <label class="text-field__label" for="password1">Пароль</label>
+            <div class="text-field">
+                <input class="text-field__input" [type]="isShownPassword ? 'text' : 'password'" name="password1"
+                    id="password1" placeholder="Введите пароль" formControlName="password"
+                    autocomplete="new-password-1" />
+                <svg-icon class="text-field__icon text-field__icon-after cursor-pointer"
+                    (click)="isShownPassword = !isShownPassword"
+                    [src]="'assets/icons/' + (isShownPassword ? 'eye-crossed.svg' : 'eye.svg')"></svg-icon>
+                <!-- <span *ngIf="hasError('password2')" class="text-field__message text-field__message_invalid">
+                </span> -->
+            </div>
+        </div>
+        <div class="text-field__wrapper">
+            <label class="text-field__label" for="password2">Повторите пароль</label>
+            <div class="text-field">
+                <input class="text-field__input" [type]="isShownPassword ? 'text' : 'password'" name="password2"
+                    id="password2" placeholder="Введите пароль" formControlName="repeatPassword"
+                    autocomplete="new-password-2" />
+                <svg-icon class="text-field__icon text-field__icon-after cursor-pointer"
+                    (click)="isShownPassword = !isShownPassword"
+                    [src]="'assets/icons/' + (isShownPassword ? 'eye-crossed.svg' : 'eye.svg')"></svg-icon>
+                <!-- <span *ngIf="hasError('password2')" class="text-field__message text-field__message_invalid">
+                </span> -->
+            </div>
+        </div>
+    </div>
+    <div class="modal-form__footer">
+        <button mat-button mat-raised-button color="primary" (click)="closeModal()">{{title}}</button>
+    </div>
+</div>

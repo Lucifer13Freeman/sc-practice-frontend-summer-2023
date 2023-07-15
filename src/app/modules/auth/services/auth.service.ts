@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap, of, take, switchMap, map, throwError } from 'rxjs';
+import { Observable, tap, of } from 'rxjs';
 import { IProfile } from '../interfaces/profile.interface';
 import { AuthTokenService } from './auth-token.service';
 import { ICredentials } from '../interfaces/credentials.interface';
-import { IRegisterData } from '../interfaces/register-data.interface';
+import { IRegisterDataStudent } from '../interfaces/register-data.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 import { IToken } from '../interfaces/token.interface';
 
@@ -56,7 +56,7 @@ export class AuthService {
     );
   }
 
-  public register(data: IRegisterData): Observable<IProfile> {
+  public register(data: IRegisterDataStudent): Observable<IProfile> {
     console.log('Implement register method');
     return of(this.mockProfile);
   }
