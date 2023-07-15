@@ -19,6 +19,11 @@ const routes: Routes = [
     loadChildren: () => import('./modules/home/home.module').then((m) => m.HomeModule),
   },
   {
+    path: 'users',
+    loadChildren: () => import('./modules/users/users.module').then((m) => m.UsersModule),
+  },
+  { path: 'tournaments', loadChildren: () => import('./modules/tournaments/tournaments.module').then(m => m.TournamentsModule) },
+  {
     path: '**',
     redirectTo: 'home',
   },
