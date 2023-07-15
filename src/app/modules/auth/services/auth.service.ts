@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap, of, take, switchMap, map, throwError } from 'rxjs';
+import { Observable, tap, of } from 'rxjs';
 import { IProfile } from '../interfaces/profile.interface';
 import { AuthTokenService } from './auth-token.service';
 import { ICredentials } from '../interfaces/credentials.interface';
